@@ -13,12 +13,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -37,20 +39,23 @@ fun WeatherMainScreen(
         Color(0xFF82C8FF),
         Color(0xFFFFFFFF),
     )*/
-      listOf(
-          Color(0xFF0D1853),
-          Color(0xFF232B55),
-          Color(0xFF383E64),
-      )
+        listOf(
+            Color(0xFF0D1853),
+            Color(0xFF232B55),
+            Color(0xFF383E64),
+        )
 
 
 
     Column(
-        modifier = Modifier.fillMaxSize().background(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
                 Brush.verticalGradient(
                     colors
                 )
-            ).verticalScroll(rememberScrollState()),
+            )
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -80,6 +85,7 @@ fun WeatherMainScreen(
 
         } else if (weatherState.errorMessage != null) {
             Column(
+                modifier = Modifier.padding(20.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -88,7 +94,9 @@ fun WeatherMainScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .align(Alignment.CenterHorizontally),
-                    color = Color.Red
+                    color = Color.Red,
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center
 
                 )
             }
@@ -99,8 +107,6 @@ fun WeatherMainScreen(
             ) {
                 CircularProgressIndicator(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .align(Alignment.CenterHorizontally)
                 )
             }
         }

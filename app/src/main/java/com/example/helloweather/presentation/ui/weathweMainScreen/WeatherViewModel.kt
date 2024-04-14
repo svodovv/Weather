@@ -52,10 +52,12 @@ class WeatherViewModel @Inject constructor(
 
                 is Resource.Error -> {
                     _weatherState.update {
-                        it.copy(
-                            errorMessage = resource.message,
+                        val copy = it.copy(
+                            errorMessage = "Проблемы подключения к Интернету," +
+                                    " проверьте соединение и перезагрузите приложение",
                             isLoading = false
                         )
+                        copy
                     }
                 }
             }
